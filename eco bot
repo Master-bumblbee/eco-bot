@@ -1,0 +1,28 @@
+import telebot, random
+
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+from telebot.types import ReactionTypeEmoji
+
+TOKEN = "7255080169:AAH51EoDxCLN0H1NwUOmdBdXcJfBZT9_Zds"
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['hello'])
+def send_hello(message):
+    bot.reply_to(message, "Hello. how are you?")
+
+@bot.message_handler(commands=['ask'])
+def send_hello(message):
+    bot.reply_to(message, "here is about what you asked https://en.wikipedia.org/wiki/Ecology")
+
+bot = telebot.TeleBot(TOKEN)
+@bot.message_handler(commands=['mem'])
+def send_mem(message):
+    with open('images eco/images.jpeg', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)
+
+@bot.message_handler(commands=['bye'])
+def send_hello(message):
+    bot.reply_to(message, "bye and have a good day")
+
+bot.polling()
